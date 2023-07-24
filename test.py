@@ -1,40 +1,37 @@
-from databases import create_table_user, insert_user, login, activate_user
-from main import send_mail
-from utils import generate_code, generate_token
-
-data = dict(
-    first_name = input("Enter your first name: "),
-    last_name = input("Enter your last name: "),
-    email = input("Enter your email: "),
-    username = input("Enter your username: "),
-    password1 = input("Enter your password: "),
-    password2 = input("Password confirm: ")
-)
-
-user = dict(
-    username=input('username: '),
-    password=input('password: ')
-)
-
-# response = insert_user(data)
-# if response == 201:
-#     code = generate_code()
-#     send_mail(data['email'], code)
-#     print('Check your email')
-
-#     verification = input("code: ")
-#     if verification == code:
-#         activate_user({'username': data['username']})
-#         print('Done')
-#     else:
-#         print('Invalid code!')
+from databases import *
 
 
-response = login(user)
+# first_name = input('first name: ')
+# last_name = input('last name:')
+# email = input('email:')
+# birth_day = input('birth day:')
+username = input('username: ')
+password = input('password: ')
+# password2 = input('password confirm: ')
+#
+# if password1 == password2:
+#     if user_is_exist('username', username):
+#         raise Exception("Username already exists!")
+#     if user_is_exist('email', email):
+#         raise Exception("Email already exists!")
+#     data = dict(
+#         first_name=first_name,
+#         last_name=last_name,
+#         birth_day=birth_day,
+#         email=email,
+#         username=username,
+#         password=password1
+#     )
+#     insert_user(data)
+#     print("Success")
+# else:
+#     raise Exception("Password are not same!")
+
+response = login(username, password)
 if response:
-    print("Welcome to our website")
+    print("Logged in")
 else:
-    print("Invalid username or password!")
+    raise Exception("Username or password invalid!")
 
 if __name__ == '__main__':
     create_table_user()

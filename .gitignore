@@ -1,3 +1,5 @@
 decorators.py
 dtb.db
 input.txt
+__pycache__
+.idea
