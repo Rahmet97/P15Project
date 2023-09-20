@@ -5,7 +5,7 @@ from utils import hash_password
 
 
 def connection():
-    return sqlite3.connect('dbt.db')
+    return sqlite3.connect('../dbt.db')
 
 
 def create_table_user():

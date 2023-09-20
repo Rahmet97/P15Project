@@ -1,37 +1,15 @@
-from databases import *
+import redis
 
 
-# first_name = input('first name: ')
-# last_name = input('last name:')
-# email = input('email:')
-# birth_day = input('birth day:')
-username = input('username: ')
-password = input('password: ')
-# password2 = input('password confirm: ')
-#
-# if password1 == password2:
-#     if user_is_exist('username', username):
-#         raise Exception("Username already exists!")
-#     if user_is_exist('email', email):
-#         raise Exception("Email already exists!")
-#     data = dict(
-#         first_name=first_name,
-#         last_name=last_name,
-#         birth_day=birth_day,
-#         email=email,
-#         username=username,
-#         password=password1
-#     )
-#     insert_user(data)
-#     print("Success")
-# else:
-#     raise Exception("Password are not same!")
+r = redis.Redis(host='localhost', port=6379, db=0)
 
-response = login(username, password)
-if response:
-    print("Logged in")
-else:
-    raise Exception("Username or password invalid!")
+r.delete('key', 'mylist', 'myset', 'myhashset')
+r.set('key', '49')  # str malumotlarni saqlash
 
-if __name__ == '__main__':
-    create_table_user()
+r.lpush('mylist', 'A5', 'A4', 'A3', 'A2')  # list malumotlarni saqlash
+
+r.sadd('myset', 9, 8, 12, 100, 13)  # set malumotlarni saqlash
+
+r.hset('myhashset', 'key1', 'value1')
+r.hset('myhashset', 'key2', 'value2')
+r.hset('myhashset', 'key3', 'value3')
